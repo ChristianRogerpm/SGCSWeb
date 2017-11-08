@@ -27,6 +27,7 @@
                         </div>
                     @endif
                         <div class="col-md-6">
+                            <input type="hidden" id="Proyecto" value="{{$xGstringProyectosAsignado}}">
                             <div class="form-group">
                                 <label class="control-label">Fases</label>
                                 <select id="Fase_1" class="form-control select2">
@@ -100,26 +101,28 @@
             </tr>
             </thead>
             <tbody>
-            {{--@foreach($xGstringTareaProyecto as $xGstringTareaProyectos)--}}
-                {{--<tr>--}}
-                    {{--<td>{{$xGstringTareaProyectos->FAnombre_fase}}</td>--}}
-                    {{--<td>{{$xGstringTareaProyectos->ENTRnombre_entregable}}</td>--}}
-                    {{--<td>{{$xGstringTareaProyectos->TAnombre_tarea}}</td>--}}
-                    {{--<td>--}}
-                        {{--<div class="btn-group pull-right">--}}
-                            {{--<button class="btn green btn-xs btn-outline dropdown-toggle" data-toggle="dropdown">Opciones--}}
-                                {{--<i class="fa fa-angle-down"></i>--}}
-                            {{--</button>--}}
-                            {{--<ul class="dropdown-menu pull-right">--}}
-                                {{--<li>--}}
-                                    {{--<a href="{{route('EditarTareaProyecto',$xGstringTareaProyectos->TAid_tarea)}}">--}}
-                                        {{--<i class="fa fa-info-circle"></i>Editar</a>--}}
-                                {{--</li>--}}
-                            {{--</ul>--}}
-                        {{--</div>--}}
-                    {{--</td>--}}
-                {{--</tr>--}}
-            {{--@endforeach--}}
+            @foreach($xGstringRelacionTareaProyecto as $xGstringRelacionTareaProyectos)
+
+                <tr>
+                    <td>{{$xGstringRelacionTareaProyectos->FAnombre_fase}}</td>
+                    <td>{{$xGstringRelacionTareaProyectos->ENTRnombre_entregable}}</td>
+                    <td>{{$xGstringRelacionTareaProyectos->TAnombre_tarea}}</td>
+                    <td>
+                        <div class="btn-group pull-right">
+                            <button class="btn green btn-xs btn-outline dropdown-toggle" data-toggle="dropdown">Opciones
+                                <i class="fa fa-angle-down"></i>
+                            </button>
+                            <ul class="dropdown-menu pull-right">
+                                <li>
+                                    <a href="{{route('RetirarRelacion',$xGstringRelacionTareaProyectos->RETAid_relaciontarea)}}">
+                                        <i class="fa fa-pencil-square-o"></i>Retirar</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </td>
+                </tr>
+
+            @endforeach
             </tbody>
         </table>
         <!-- END EXAMPLE TABLE PORTLET-->

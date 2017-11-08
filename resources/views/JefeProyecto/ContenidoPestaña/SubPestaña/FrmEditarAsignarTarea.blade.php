@@ -33,7 +33,7 @@
                                 <label class="control-label">Entregable</label>
                                 <select id="Entregable_1" class="form-control select2" name="ENTRPROid_entregableproyecto">
                                     @foreach($xGstringEntregableTareaProyecto as $xGstringEntregableTareaProyectos)
-                                        <option value="{{$xGstringEntregableTareaProyectos->ENTRid_entregable}}" selected>{{$xGstringEntregableTareaProyectos->ENTRnombre_entregable}}</option>
+                                        <option value="{{$xGstringEntregableTareaProyectos->ENTRPROid_entregableproyecto}}" selected>{{$xGstringEntregableTareaProyectos->ENTRnombre_entregable}}</option>
                                     @endforeach
                                 </select>
                             </div>

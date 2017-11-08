@@ -62,6 +62,7 @@ Route::post('/ModificarTareaProyecto/{id}','JefeProyecto\ClsControllerTareaProye
 //Relacionar Tarea Proyecto
 Route::get('/RelacionarTareaProyecto/{id}','JefeProyecto\ClsControllerRelacionTareaProyecto@fncMostrarRelacionTareaProyecto')->name('RelacionarTareaProyecto');
 Route::post('/RegistrarRelacionTareaProyecto','JefeProyecto\ClsControllerRelacionTareaProyecto@fncRegistrarRelacionTareaProyecto')->name('RegistrarRelacionTareaProyecto');
+Route::get('/RetirarRelacionProyecto/{id}','JefeProyecto\ClsControllerRelacionTareaProyecto@fncRetirarRelacion')->name('RetirarRelacion');
 
 
 //Asignar Tarea Proyecto
@@ -84,3 +85,17 @@ Route::get('/RetirarComiteCambio/{id}','JefeProyecto\ClsControllerComiteCambio@f
 Route::get('/EstadoProyecto/{id}','JefeProyecto\ClsControllerEstadoProyecto@fncEstadoProyecto')->name('EstadoProyecto');
 
 Route::get('/RevisionDocumento/{id}','ClsControllerProyectosAsignados@fncRevisionDocumento')->name('RevisionDocumento');
+
+
+
+//Mis Entregables ( Participante )
+
+Route::get('/EntregablesAsignados/{id}','Participante\ClsControllerEntregableAsignado@fncMostrarEntregablesAsignados')->name('MostrarEntregablesAsignados');
+
+/*Pensando como será*/
+Route::get('/RevisionEntregable{id}','Particpante\ClsControllerEntregableAsignado@fncGenerarRevisionEntregable')->name('RevisionEntregable');
+
+Route::get('/VersionesEntregables/{id}','Participante\ClsControllerEntregableAsignado@fncMostrarVersionesEntregables')->name('VersionesEntregables');
+
+
+Route::get('/TareasAsignadas/{id}','Participante\ClsControllerTareasAsignadas@fncMostrarTareasAsignadas')->name('TareasAsignadas');

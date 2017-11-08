@@ -99,14 +99,22 @@ class ClsControllerAsignarTareaProyecto extends Controller
             ->where('atp.ATPid_asignartareaproyecto',$id)
             ->get();
 
+//        $xGstringEntregableTareaProyecto = DB::table('sgcsatppasignartareaproyecto as atp')
+//            ->select('entpro.ENTRid_entregable','entre.ENTRnombre_entregable')
+//            ->join('sgcsentrpropentregableproyecto as entpro','atp.ENTRPROid_entregableproyecto' , 'entpro.ENTRPROid_entregableproyecto')
+//            ->join('sgcsentrtentregable as entre','entre.ENTRid_entregable' , 'entpro.ENTRid_entregable')
+//            ->where('atp.ATPid_asignartareaproyecto',$id)
+//            ->get();
+
         $xGstringEntregableTareaProyecto = DB::table('sgcsatppasignartareaproyecto as atp')
-            ->select('entpro.ENTRid_entregable','entre.ENTRnombre_entregable')
-            ->join('sgcsentrpropentregableproyecto as entpro','atp.ENTRPROid_entregableproyecto' , 'entpro.ENTRPROid_entregableproyecto')
+            ->select('entpro.ENTRPROid_entregableproyecto','entre.ENTRnombre_entregable')
+            ->join('sgcsentrpropentregableproyecto as entpro','entpro.ENTRPROid_entregableproyecto','atp.ENTRPROid_entregableproyecto')
             ->join('sgcsentrtentregable as entre','entre.ENTRid_entregable' , 'entpro.ENTRid_entregable')
             ->where('atp.ATPid_asignartareaproyecto',$id)
             ->get();
 
-//        dd($xGstringEditarAsignarTareaProyecto);
+
+//        dd($xGstringEntregableTareaProyecto);
 
 //        dd($var);
 

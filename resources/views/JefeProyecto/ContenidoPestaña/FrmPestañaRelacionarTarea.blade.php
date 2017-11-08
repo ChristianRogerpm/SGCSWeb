@@ -88,8 +88,9 @@
         $('#Fase_1').on('change',function (e) {
             //console.log(e);
             var FAid_fase = e.target.value;
+            var Project = document.getElementById('Proyecto').value;
             console.log(FAid_fase);
-            $.get('/CargarEntregableTareaProyecto?FAid_fase='+FAid_fase,function (data){
+            $.get('/CargarEntregableTareaProyecto?FAid_fase='+FAid_fase+'&Proyecto='+Project,function (data){
                 $('#Entregable_1').empty();
                 $('#Tarea_1').empty();
                 $('#Tarea_1').append('<option value="'+'0'+'">'+'Seleccione una Tarea'+'</option>');
@@ -116,8 +117,9 @@
         $('#Fase_2').on('change',function (e) {
             //console.log(e);
             var FAid_fase = e.target.value;
+            var Project = document.getElementById('Proyecto').value;
             console.log(FAid_fase);
-            $.get('/CargarEntregableTareaProyecto?FAid_fase='+FAid_fase,function (data){
+            $.get('/CargarEntregableTareaProyecto?FAid_fase='+FAid_fase+'&Proyecto='+Project,function (data){
                 $('#Entregable_2').empty();
                 $('#Tarea_2').empty();
                 $('#Tarea_2').append('<option value="'+'0'+'">'+'Seleccione una Tarea'+'</option>');

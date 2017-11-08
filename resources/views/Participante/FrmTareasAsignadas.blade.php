@@ -8,7 +8,7 @@
                 <div class="portlet-title">
                     <div class="caption font-light">
                         <i class="icon-settings font-light"></i>
-                        <span class="caption-subject bold uppercase">Lista de Entregables Asignadosss</span>
+                        <span class="caption-subject bold uppercase">Lista de Tareas Asignados</span>
                     </div>
                     <div class="tools"> </div>
                 </div>
@@ -16,25 +16,25 @@
                     <table class="table table-striped table-bordered table-hover dt-responsive" width="100%" id="sample_1">
                         <thead>
                         <tr>
-                            <th class="all">Proyecto</th>
-                            <th class="min-tablet">Fase</th>
-                            <th class="min-tablet">Entregable</th>
+                            <th class="all">Nombre de Tarea</th>
+                            <th class="min-tablet">Fecha de Inicio</th>
+                            <th class="min-tablet">Fecha de Fin</th>
                             <th class="min-tablet">Estado</th>
                             <th class="all">Opciones</th>
+
+
                         </tr>
                         </thead>
                         <tbody>
-                        @foreach($xGstringEntregablesAsignado as $xGstringEntregablesAsignados)
+                        @foreach($xGstringTareasAsignadas as $xGstringTareasAsignadass)
                             <tr>
-                                <td class="text-center">
-                                    <span class="label label-sm label-success">{{$xGstringEntregablesAsignados->PROnombre_proyecto}}</span>
-                                </td>
-                                <td>{{$xGstringEntregablesAsignados->FAnombre_fase}}</td>
-                                <td>{{$xGstringEntregablesAsignados->ENTRnombre_entregable}}</td>
+                                <td>{{$xGstringTareasAsignadass->TAnombre_tarea}}</td>
+                                <td class="text-center">{{$xGstringTareasAsignadass->ATPfecha_inicio_tareaproyecto}}</td>
+                                <td class="text-center">{{$xGstringTareasAsignadass->ATPfecha_fin_tareaproyecto}}</td>
                                 <td>
-                                    @if($xGstringEntregablesAsignados->ATPestado_tareaproyecto == 1)
+                                    @if($xGstringTareasAsignadass->ATPestado_tareaproyecto == 1)
                                         <span class="label label-sm label-primary">EN CURSO</span>
-                                    @elseif($xGstringEntregablesAsignados->ATPestado_tareaproyecto == 2)
+                                    @elseif($xGstringTareasAsignadass->ATPestado_tareaproyecto == 2)
                                         <span class="label label-sm label-success">FINALIZADO</span>
                                     @else
                                         <span class="label label-sm label-danger">CANCELADO</span>
@@ -47,28 +47,25 @@
                                         </button>
                                         <ul class="dropdown-menu pull-right">
                                             <li>
-                                                <a href="#">
-                                                    <i class="fa fa-info-circle"></i>Generar Revision Entregable</a>
+                                                <a data-toggle="modal" href="#large">
+                                                    <i class="fa fa-info-circle"></i>Generar Revision Tarea</a>
                                             </li>
                                             <li>
-                                                <a href="#">
-                                                    <i class="fa fa-book"></i>Version Entregable
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="{{route('TareasAsignadas',$xGstringEntregablesAsignados->ENTRid_entregable)}}">
-                                                    <i class="fa fa-book"></i>Tareas
+                                                <a href="">
+                                                    <i class="fa fa-book"></i>Version Tarea
                                                 </a>
                                             </li>
                                         </ul>
                                     </div>
                                 </td>
                             </tr>
+                            @include('Participante.Modals.FrmModalGenerarTarea')
                         @endforeach
                         </tbody>
                     </table>
                 </div>
             </div>
+            <!-- END EXAMPLE TABLE PORTLET-->
         </div>
     </div>
 

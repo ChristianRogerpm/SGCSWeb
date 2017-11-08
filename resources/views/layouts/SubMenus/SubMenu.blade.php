@@ -69,7 +69,7 @@
         </a>
     </li>
     <li class="nav-item">
-        <a href="javascript:;" class="nav-link nav-toggle">
+        <a href="{{route('MostrarEntregablesAsignados',Auth::user()->USUid_usuario)}}" class="nav-link nav-toggle">
             <i class="icon-folder"></i>
             <span class="title">Entregables</span>
         </a>

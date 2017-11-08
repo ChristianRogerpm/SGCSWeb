@@ -31,7 +31,7 @@
                             <div class="form-group">
                                 <label class="control-label">Entregable</label>
                                 <select id="Entregable" class="form-control select2" name="ENTPROid_entregableproyecto">
-                                    <option value="{{$xGstringEditarEntregable->ENTRid_entregable}}">{{$xGstringEditarEntregable->ENTRnombre_entregable}}</option>
+                                    <option value="{{$xGstringEditarEntregable->ENTRPROid_entregableproyecto}}">{{$xGstringEditarEntregable->ENTRnombre_entregable}}</option>
                                 </select>
                             </div>
                             <div class="form-group">

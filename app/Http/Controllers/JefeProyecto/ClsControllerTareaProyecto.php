@@ -121,14 +121,18 @@ class ClsControllerTareaProyecto extends Controller
             ->where('entpro.PROid_proyecto',$xGstringProyectosAsignado)
             ->get();
 
+//        $xGstringEditarEntregable = DB::table('sgcstaptareaproyecto as tapro')
+//            ->select('entre.ENTRid_entregable','entre.ENTRnombre_entregable')
+//            ->join('sgcsentrpropentregableproyecto as entpro','tapro.ENTPROid_entregableproyecto','entpro.ENTRPROid_entregableproyecto')
+//            ->join('sgcsentrtentregable as entre','entpro.ENTRid_entregable','entre.ENTRid_entregable')
+//            ->where('tapro.TAid_tarea',$id)
+//            ->first();
         $xGstringEditarEntregable = DB::table('sgcstaptareaproyecto as tapro')
-            ->select('entre.ENTRid_entregable','entre.ENTRnombre_entregable')
+            ->select('entpro.ENTRPROid_entregableproyecto','entre.ENTRnombre_entregable')
             ->join('sgcsentrpropentregableproyecto as entpro','tapro.ENTPROid_entregableproyecto','entpro.ENTRPROid_entregableproyecto')
             ->join('sgcsentrtentregable as entre','entpro.ENTRid_entregable','entre.ENTRid_entregable')
             ->where('tapro.TAid_tarea',$id)
             ->first();
-
-//        dd($xGstringProyectosAsignado);
 
         return view('JefeProyecto.FrmGestionarTarea',compact('xGstringProyectosAsignado','xGstringFaseEntregableProyecto','xGstringUsuarioProyecto','xGstringTareaProyecto','xGstringAsignarTareaProyecto','xGstringEditarTareaProyecto','xGstringEditarEntregable'));
 
@@ -136,16 +140,14 @@ class ClsControllerTareaProyecto extends Controller
 
     public function fncModificarTareaProyecto(Request $request, $id)
     {
-        dd($request->all());
-//        EntidadTareaProyecto::find($id)->update($request->all());
-        //EntidadProyecto::find($id)->update($clsRequestProyecto->all());
-//        return back();
-    }
-    public function fncAsignarTareaProyecto(Request $request)
-    {
-        EntidadAsignarTareaProyecto::create($request->all());
+        EntidadTareaProyecto::find($id)->update($request->all());
         return back();
     }
+//    public function fncAsignarTareaProyecto(Request $request)
+//    {
+//        EntidadAsignarTareaProyecto::create($request->all());
+//        return back();
+//    }
 
 
 
@@ -162,6 +164,8 @@ class ClsControllerTareaProyecto extends Controller
             ->where('sgcsentrpropentregableproyecto.PROid_proyecto',$PROid_proyecto)
             ->where('sgcsentrpropentregableproyecto.ENTRPROestado_entregable_proyecto','<>',2)
             ->get();
+
+//        dd($xGarrayEntregable);
         return Response::json($xGarrayEntregable);
     }
     public function fncCargarTareaProyecto(Request $request)
