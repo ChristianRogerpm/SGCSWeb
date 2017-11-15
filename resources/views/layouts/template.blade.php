@@ -47,6 +47,15 @@
     <link href="../assets/layouts/layout/css/custom.min.css" rel="stylesheet" type="text/css" />
     <!-- END THEME LAYOUT STYLES -->
     <link rel="shortcut icon" href="favicon.ico" /> </head>
+
+<link rel="stylesheet" href="../assets/toastr.css">
+
+    <style>
+        .disabled {
+            pointer-events:none;
+            opacity: 0.9;
+        }
+    </style>
 <!-- END HEAD -->
 
 <body class="page-header-fixed page-sidebar-closed-hide-logo page-content-white page-md">
@@ -163,6 +172,31 @@
 
 <!-- BEGIN CORE PLUGINS -->
 <script src="../assets/global/plugins/jquery.min.js" type="text/javascript"></script>
+
+<script src="../assets/toastr.js"></script>
+
+<script>
+    toastr.info("Bienvenido");
+    toastr.options = {
+        "closeButton": false,
+        "debug": false,
+        "newestOnTop": false,
+        "progressBar": true,
+        "positionClass": "toast-top-right",
+        "preventDuplicates": false,
+        "onclick": null,
+        "showDuration": "300",
+        "hideDuration": "1000",
+        "timeOut": "5000",
+        "extendedTimeOut": "1000",
+        "showEasing": "swing",
+        "hideEasing": "linear",
+        "showMethod": "fadeIn",
+        "hideMethod": "fadeOut"
+    }
+</script>
+
+
 {{--<script src="https://code.jquery.com/jquery-3.2.1.min.js" type="text/javascript"></script>--}}
 <script src="../assets/global/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
 <script src="../assets/global/plugins/js.cookie.min.js" type="text/javascript"></script>

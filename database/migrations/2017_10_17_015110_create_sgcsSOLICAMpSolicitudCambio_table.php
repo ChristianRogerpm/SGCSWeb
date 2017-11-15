@@ -20,8 +20,10 @@ class CreateSgcsSOLICAMpSolicitudCambioTable extends Migration
             $table->date('SOLICAMfecha_solicitud_solicitudcambio');
             $table->unsignedInteger('PROid_proyecto');
             $table->unsignedInteger('FAid_fase');
+            $table->unsignedInteger('TAid_tarea');
             $table->unsignedInteger('ENTPROid_entregableproyecto');
             $table->string('SOLICAMcodigo_solicitudcambio');
+            $table->boolean('SOLICAMestado_solicitudcambio');
             $table->unsignedInteger('USUid_usuario');
         });
     }

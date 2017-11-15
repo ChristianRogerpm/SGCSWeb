@@ -18,6 +18,7 @@ class CreateSgcsTAREpTareaRevisionTable extends Migration
             $table->string('TAREobservacion_tarearevision');
             $table->string('TAREurl_tarearevision');
             $table->date('TAREfecha_emitida_tarearevision');
+            $table->boolean('TAREestado_tarearevision');
             $table->unsignedInteger('ATPid_asignartareaproyecto');
         });
     }

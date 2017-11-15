@@ -68,4 +68,31 @@ class ClsControllerRelacionTareaProyecto extends Controller
 
         return back();
     }
+
+    public function fncCargarEntregableTareaProyecto(Request $request)
+    {
+        $FAid_fase = $request->input('FAid_fase');
+        $PROid_proyecto = $request->input('Proyecto');
+
+        //Obtener Entregables de acuerdo a la Fase elegida (Id_fase)
+        $xGarrayEntregable = DB::table('sgcsentrpropentregableproyecto')
+            ->select('sgcsentrpropentregableproyecto.ENTRPROid_entregableproyecto','sgcsentrtentregable.ENTRnombre_entregable')
+            ->join('sgcsentrtentregable','sgcsentrpropentregableproyecto.ENTRid_entregable','sgcsentrtentregable.ENTRid_entregable')
+            ->where('sgcsentrpropentregableproyecto.FAid_fase',$FAid_fase)
+            ->where('sgcsentrpropentregableproyecto.PROid_proyecto',$PROid_proyecto)
+            ->where('sgcsentrpropentregableproyecto.ENTRPROestado_entregable_proyecto','<>',2)
+            ->get();
+        return Response::json($xGarrayEntregable);
+    }
+    public function fncCargarTareaProyecto(Request $request)
+    {
+        $ENTPROid_entregableproyecto = $request->input('ENTPROid_entregableproyecto');
+
+        // Obtener Tareas de acuerdo al Entregable elegido (Id_EntregableProyecto)
+        $xGarrayTarea = DB::table('sgcstaptareaproyecto')
+            ->select('sgcstaptareaproyecto.TAid_tarea','sgcstaptareaproyecto.TAnombre_tarea')
+            ->where('sgcstaptareaproyecto.ENTPROid_entregableproyecto',$ENTPROid_entregableproyecto)
+            ->get();
+        return Response::json($xGarrayTarea);
+    }
 }

@@ -47,7 +47,7 @@ Route::post('/RegistrarIntegranteProyecto','JefeProyecto\ClsControllerUsuarioPro
 Route::get('/RetirarUsuarioProyecto/{USUPROid_usuarioproyecto}','JefeProyecto\ClsControllerUsuarioProyecto@fncRetirarUsuarioProyecto')->name('RetirarUsuarioProyecto');
 
 //Elegir Entregable a Proyecto
-Route::get('/EntregableProyecto/{id}','JefeProyecto\ClsControllerEntregableProyecto@fncEntregablesProyecto')->name('EntregableProyecto');
+Route::get('/EntregableProyecto/{id}','JefeProyecto\ClsControllerEntregableProyecto@fncMostrarEntregablesProyecto')->name('EntregableProyecto');
 Route::get('/CargarEntregableFase','JefeProyecto\ClsControllerEntregableProyecto@fncCargarEntregableFase')->name('CargarEntregableFase');
 Route::get('/RetirarEntregableProyecto/{ENTRPROid_entregableproyecto}','JefeProyecto\ClsControllerEntregableProyecto@fncRetirarEntregableProyecto')->name('RetirarEntregableProyecto');
 Route::post('/RegistrarEntregableProyecto','JefeProyecto\ClsControllerEntregableProyecto@fncRegistrarEntregableProyecto')->name('RegistrarEntregableProyecto');
@@ -81,10 +81,14 @@ Route::get('/ComiteCambio/{id}','JefeProyecto\ClsControllerComiteCambio@fncMostr
 Route::post('/RegistrarComiteCambio','JefeProyecto\ClsControllerComiteCambio@fncRegistrarComiteCambio')->name('RegistrarComiteCambio');
 Route::get('/RetirarComiteCambio/{id}','JefeProyecto\ClsControllerComiteCambio@fncRetirarComiteCambio')->name('RetirarComiteCambio');
 
+//Estado de Proyecto
+Route::get('/EstadoProyecto/{id}','JefeProyecto\ClsControllerEstadoProyecto@fncMostrarEstadoProyecto')->name('EstadoProyecto');
 
-Route::get('/EstadoProyecto/{id}','JefeProyecto\ClsControllerEstadoProyecto@fncEstadoProyecto')->name('EstadoProyecto');
+//Revisión de Documentos a calificar
 
-Route::get('/RevisionDocumento/{id}','ClsControllerProyectosAsignados@fncRevisionDocumento')->name('RevisionDocumento');
+Route::get('/RevisionDocumento/{id}','JefeProyecto\ClsControllerRevisionDocumento@fncMostrarDocumentosRevisar')->name('RevisionDocumento');
+Route::post('/GenerarVersion','JefeProyecto\ClsControllerRevisionDocumento@fncGenerarVersionTarea')->name('GenerarVersion');
+Route::post('/GenerarVersionEntregable','JefeProyecto\ClsControllerRevisionDocumento@fncGenerarVersionEntregable')->name('GenerarVersionEntregable');
 
 
 
@@ -92,10 +96,23 @@ Route::get('/RevisionDocumento/{id}','ClsControllerProyectosAsignados@fncRevisio
 
 Route::get('/EntregablesAsignados/{id}','Participante\ClsControllerEntregableAsignado@fncMostrarEntregablesAsignados')->name('MostrarEntregablesAsignados');
 
-/*Pensando como será*/
-Route::get('/RevisionEntregable{id}','Particpante\ClsControllerEntregableAsignado@fncGenerarRevisionEntregable')->name('RevisionEntregable');
-
+Route::post('/RevisionEntregable','Participante\ClsControllerEntregableAsignado@fncGenerarRevisionEntregable')->name('RevisionEntregable');
 Route::get('/VersionesEntregables/{id}','Participante\ClsControllerEntregableAsignado@fncMostrarVersionesEntregables')->name('VersionesEntregables');
 
 
 Route::get('/TareasAsignadas/{id}','Participante\ClsControllerTareasAsignadas@fncMostrarTareasAsignadas')->name('TareasAsignadas');
+Route::post('/GenerarRevisionTarea','Participante\ClsControllerTareasAsignadas@fncGenerarRevisionTareaAsignada')->name('GenerarRevisionTarea');
+Route::get('MostrarTareaVersion/{id}','Participante\ClsControllerTareasAsignadas@fncMostrarVersionesTareaAsignada')->name('MostrarTareaVersion');
+
+
+//Solicitar CAMBIOS
+
+Route::get('/SolicitarCambio/{id}','Participante\ClsControllerSolicitudCambio@fncMostrarSolicitudCambio')->name('SolicitarCambio');
+
+Route::get('/CargarFasesProyecto','Participante\ClsControllerSolicitudCambio@fncCargarFasesProyecto')->name('CargarFasesProyecto');
+Route::get('/CargarEntregableProyecto','Participante\ClsControllerSolicitudCambio@fncCargarEntregableProyecto')->name('CargarEntregableProyecto');
+Route::get('/CargarTareaProyectoCambio','Participante\ClsControllerSolicitudCambio@fncCargarTareaProyecto')->name('CargarTareaProyectoCambio');
+
+Route::post('/GenerarSolicitudCambio','Participante\ClsControllerSolicitudCambio@fncGenerarSolicitudCambio')->name('GenerarSolicitudCambio');
+
+Route::get('/ProyectoComiteCambio/{id}','Participante\ClsControllerComiteSolicitud@fncMostrarProyectosComite')->name('ProyectoComiteCambio');

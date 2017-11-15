@@ -14,7 +14,7 @@
                         <input type="hidden" name="ENTRPROestado_entregable_proyecto" value="1">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label class="control-label">Entregables:</label>
+                                <label class="control-label">Metodologia Seleccionada:</label>
                                 <input type="text" name="FAnombre_fase" class="form-control" value="{{$xGstringMetodologiaProyecto->METnombre_metodologia}}" disabled>
                             </div>
                             <div class="form-group">
@@ -29,7 +29,7 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label class="control-label">Metodologia Seleccionada:</label>
+                                <label class="control-label">Entregables:</label>
                                 {{--<input type="text" name="FAnombre_fase" class="form-control" value="{{$xGstringMetodologiaProyecto->METnombre_metodologia}}" disabled>--}}
                             </div>
                             <div class="input_fields_wrap">

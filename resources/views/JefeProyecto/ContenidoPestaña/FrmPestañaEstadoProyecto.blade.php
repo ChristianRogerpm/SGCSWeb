@@ -87,8 +87,10 @@
                                                                                 <span class="label label-sm label-primary">EN CURSO</span>
                                                                             @elseif($xGstringTareaAsignadaFases->ATPestado_tareaproyecto == 2)
                                                                                 <span class="label label-sm label-success">FINALIZADO</span>
-                                                                            @else
+                                                                            @elseif($xGstringTareaAsignadaFases->ATPestado_tareaproyecto == 3)
                                                                                 <span class="label label-sm label-danger">CANCELADO</span>
+                                                                            @elseif($xGstringTareaAsignadaFases->ATPestado_tareaproyecto == 4)
+                                                                                <span class="label label-sm label-default">EN REVISION</span>
                                                                             @endif
                                                                         </td>
                                                                     </tr>

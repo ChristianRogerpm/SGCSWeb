@@ -8,7 +8,7 @@
                 <div class="portlet-title">
                     <div class="caption font-light">
                         <i class="icon-settings font-light"></i>
-                        <span class="caption-subject bold uppercase">Lista de Entregables Asignadosss</span>
+                        <span class="caption-subject bold uppercase">Lista de Entregables Asignados</span>
                     </div>
                     <div class="tools"> </div>
                 </div>
@@ -19,26 +19,38 @@
                             <th class="all">Proyecto</th>
                             <th class="min-tablet">Fase</th>
                             <th class="min-tablet">Entregable</th>
-                            <th class="min-tablet">Estado</th>
+                            <th class="min-tablet">Progreso</th>
                             <th class="all">Opciones</th>
                         </tr>
                         </thead>
                         <tbody>
                         @foreach($xGstringEntregablesAsignado as $xGstringEntregablesAsignados)
                             <tr>
-                                <td class="text-center">
-                                    <span class="label label-sm label-success">{{$xGstringEntregablesAsignados->PROnombre_proyecto}}</span>
+                                <td>
+                                    {{$xGstringEntregablesAsignados->PROnombre_proyecto}}
                                 </td>
                                 <td>{{$xGstringEntregablesAsignados->FAnombre_fase}}</td>
                                 <td>{{$xGstringEntregablesAsignados->ENTRnombre_entregable}}</td>
                                 <td>
-                                    @if($xGstringEntregablesAsignados->ATPestado_tareaproyecto == 1)
-                                        <span class="label label-sm label-primary">EN CURSO</span>
-                                    @elseif($xGstringEntregablesAsignados->ATPestado_tareaproyecto == 2)
-                                        <span class="label label-sm label-success">FINALIZADO</span>
-                                    @else
-                                        <span class="label label-sm label-danger">CANCELADO</span>
-                                    @endif
+                                    @foreach($contandoFinalizados as $cont)
+                                        @if($cont->ENTRid_entregable == $xGstringEntregablesAsignados->ENTRid_entregable)
+                                        <?php
+                                            $total = DB::table('sgcsatppasignartareaproyecto as atp')
+                                                ->selectRaw('count(atp.ATPid_asignartareaproyecto) as total')
+                                                ->join('sgcstaptareaproyecto as tapro' , 'tapro.TAid_tarea', 'atp.TAid_tarea')
+                                                ->join('sgcsentrpropentregableproyecto as entpro' , 'entpro.ENTRPROid_entregableproyecto', 'tapro.ENTPROid_entregableproyecto')
+                                                ->join('sgcsentrtentregable as entre' , 'entre.ENTRid_entregable', 'entpro.ENTRid_entregable')
+                                                ->where('entre.ENTRid_entregable', $cont->ENTRid_entregable)
+                                                ->get();
+                                        ?>
+                                            @foreach($total as $totales)
+                                                <button class="btn btn-primary btn-block disabled">{{round($porcentaje  = ($cont->finalizados * 100)/ ($totales->total))}}%</button>
+                                            @endforeach
+
+                                        @else
+
+                                        @endif
+                                    @endforeach
                                 </td>
                                 <td>
                                     <div class="btn-group pull-right">
@@ -46,10 +58,28 @@
                                             <i class="fa fa-angle-down"></i>
                                         </button>
                                         <ul class="dropdown-menu pull-right">
-                                            <li>
-                                                <a href="#">
-                                                    <i class="fa fa-info-circle"></i>Generar Revision Entregable</a>
-                                            </li>
+
+                                            @foreach($contandoFinalizados as $cont)
+                                                @if($cont->ENTRid_entregable == $xGstringEntregablesAsignados->ENTRid_entregable)
+                                                    <?php
+                                                    $total = DB::table('sgcsatppasignartareaproyecto as atp')
+                                                        ->selectRaw('count(atp.ATPid_asignartareaproyecto) as total')
+                                                        ->join('sgcstaptareaproyecto as tapro' , 'tapro.TAid_tarea', 'atp.TAid_tarea')
+                                                        ->join('sgcsentrpropentregableproyecto as entpro' , 'entpro.ENTRPROid_entregableproyecto', 'tapro.ENTPROid_entregableproyecto')
+                                                        ->join('sgcsentrtentregable as entre' , 'entre.ENTRid_entregable', 'entpro.ENTRid_entregable')
+                                                        ->where('entre.ENTRid_entregable', $cont->ENTRid_entregable)
+                                                        ->get();
+                                                    ?>
+
+                                                        <li>
+                                                            <a data-toggle="modal" href="#generate{{$xGstringEntregablesAsignados->ENTRid_entregable}}">
+                                                                <i class="fa fa-info-circle"></i>Generar Revision Entregable</a>
+
+                                                        </li>
+
+                                                @else
+                                                @endif
+                                            @endforeach
                                             <li>
                                                 <a href="#">
                                                     <i class="fa fa-book"></i>Version Entregable
@@ -64,6 +94,7 @@
                                     </div>
                                 </td>
                             </tr>
+                            @include('Participante.Modals.FrmModalGenerarEntregable')
                         @endforeach
                         </tbody>
                     </table>
@@ -73,3 +104,19 @@
     </div>
 
 @endsection
+
+{{--@section('scripts')--}}
+    {{--<script>--}}
+         {{--var numvar =;--}}
+         {{--var dqwd = "fea";--}}
+
+        {{--console.log(dqwd);--}}
+
+        {{--$.ajax({--}}
+            {{--url: 'cargarDatos.php',--}}
+            {{--type: 'GET',--}}
+            {{--dataType: 'json',--}}
+            {{--data: { id : $('#cambiar').val() }--}}
+        {{--})--}}
+    {{--</script>--}}
+{{--@endsection--}}

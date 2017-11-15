@@ -17,19 +17,12 @@ class ClsControllerTareaProyecto extends Controller
     {
         $xGstringProyectosAsignado = $id;
 
-        $xGstringUsuarioProyecto = EntidadUsuarioProyecto::where('PROid_proyecto',$id)
-        ->select('USUPROid_usuarioproyecto','sgcsusutusuario.USUnombre_usuario','sgcsusutusuario.USUapellido_usuario')
-        ->join('sgcsusutusuario','sgcsusupropusuarioproyecto.USUid_usuario','sgcsusutusuario.USUid_usuario')
-        ->where('sgcsusupropusuarioproyecto.USUPROestado_usuarioproyecto','<>','2')
-        ->get();
-
         //Obtener Fases de los Entregables seleccionados en la pestaña anterior
 
         $xGstringFaseEntregableProyecto = EntidadEntregableProyecto::where('PROid_proyecto',$id)
             ->select('sgcsentrpropentregableproyecto.FAid_fase','sgcsfatfase.FAnombre_fase')
             ->join('sgcsfatfase','sgcsentrpropentregableproyecto.FAid_fase','sgcsfatfase.FAid_fase')
             ->groupBy('sgcsentrpropentregableproyecto.FAid_fase')
-//            ->groupBy('sgcsfatfase.FAnombre_fase')
             ->get();
 
         // Obtener Tareas registradas y relacionadas a sus tablas respectivas
@@ -41,20 +34,6 @@ class ClsControllerTareaProyecto extends Controller
             ->join('sgcsentrtentregable as entre','entre.ENTRid_entregable','entpro.ENTRid_entregable')
             ->where('entpro.PROid_proyecto',$id)
             ->get();
-
-        //Listar Tareas asignadas a miembros del equipo
-        $xGstringAsignarTareaProyecto = DB::table('sgcsatppasignartareaproyecto as atp')
-            ->select('atp.ATPid_asignartareaproyecto','fa.FAnombre_fase','entre.ENTRnombre_entregable','tapro.TAnombre_tarea','usu.USUnombre_usuario','atp.ATPfecha_inicio_tareaproyecto','atp.ATPfecha_fin_tareaproyecto','atp.ATPestado_tareaproyecto')
-            ->join('sgcstaptareaproyecto as tapro','tapro.TAid_tarea','atp.TAid_tarea')
-            ->join('sgcsusupropusuarioproyecto as usupro','atp.USUPROid_usuarioproyecto','usupro.USUPROid_usuarioproyecto')
-            ->join('sgcsusutusuario as usu','usupro.USUid_usuario','usu.USUid_usuario')
-            ->join('sgcsfatfase as fa','fa.FAid_fase','atp.FAid_fase')
-            ->join('sgcsentrpropentregableproyecto as entpro','atp.ENTRPROid_entregableproyecto','entpro.ENTRPROid_entregableproyecto')
-            ->join('sgcsentrtentregable as entre','entpro.ENTRid_entregable','entre.ENTRid_entregable')
-            ->where('entpro.PROid_proyecto',$id)
-            ->get();
-
-//        return Response::json($xGstringAsignarTareaProyecto);
 
         return view('JefeProyecto.FrmGestionarTarea',compact('xGstringProyectosAsignado','xGstringFaseEntregableProyecto','xGstringUsuarioProyecto','xGstringTareaProyecto','xGstringAsignarTareaProyecto'));
     }
@@ -143,13 +122,6 @@ class ClsControllerTareaProyecto extends Controller
         EntidadTareaProyecto::find($id)->update($request->all());
         return back();
     }
-//    public function fncAsignarTareaProyecto(Request $request)
-//    {
-//        EntidadAsignarTareaProyecto::create($request->all());
-//        return back();
-//    }
-
-
 
     public function fncCargarEntregableTareaProyecto(Request $request)
     {
@@ -164,8 +136,6 @@ class ClsControllerTareaProyecto extends Controller
             ->where('sgcsentrpropentregableproyecto.PROid_proyecto',$PROid_proyecto)
             ->where('sgcsentrpropentregableproyecto.ENTRPROestado_entregable_proyecto','<>',2)
             ->get();
-
-//        dd($xGarrayEntregable);
         return Response::json($xGarrayEntregable);
     }
     public function fncCargarTareaProyecto(Request $request)

@@ -58,7 +58,7 @@
                                                     <a href="{{route('GestionarTareaProyecto',$xGstringProyectosAsignado)}}"> Registrar Tareas </a>
                                                 </li>
                                                 <li>
-                                                    <a href="{{route('RelacionarTareaProyecto',$xGstringProyectosAsignado)}}"> Trazabilidad de Tareas </a>
+                                                    <a href="{{route('RelacionarTareaProyecto',$xGstringProyectosAsignado)}}"> Relacionar Tareas </a>
                                                 </li>
                                                 <li class="active">
                                                     <a href="{{route('AsignarTareaProyecto',$xGstringProyectosAsignado)}}"> Asignar Tareas </a>

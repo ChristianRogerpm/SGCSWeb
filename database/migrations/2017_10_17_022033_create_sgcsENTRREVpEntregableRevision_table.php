@@ -18,7 +18,7 @@ class CreateSgcsENTRREVpEntregableRevisionTable extends Migration
             $table->string('ENTRREVobservacion_entregablerevision');
             $table->string('ENTRREVurl_entregablerevision');
             $table->string('ENTRREVfecha_emitida_entregablerevision');
-            $table->unsignedInteger('ATPid_asignartareaproyecto');
+            $table->unsignedInteger('ENTRPROid_entregableproyecto');
         });
     }
 

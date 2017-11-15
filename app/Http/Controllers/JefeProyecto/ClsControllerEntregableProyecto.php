@@ -17,7 +17,7 @@ class ClsControllerEntregableProyecto extends Controller
     {
         $this->middleware('auth');
     }
-    public function fncEntregablesProyecto($id)
+    public function fncMostrarEntregablesProyecto($id)
     {
         $xGstringProyectosAsignado = $id;
 
@@ -36,9 +36,6 @@ class ClsControllerEntregableProyecto extends Controller
               where('PROid_proyecto','=',$id)
             ->where('ENTRPROestado_entregable_proyecto','<>',2)
             ->get();
-
-//        dd($xGstringFaseProyecto);
-//        echo $xGstringMetodologiaProyecto->PROid_proyecto;
 
         return view('JefeProyecto.FrmEntregableProyecto',compact(
             'xGstringProyectosAsignado',

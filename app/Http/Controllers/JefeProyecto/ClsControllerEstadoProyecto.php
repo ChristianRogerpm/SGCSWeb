@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\DB;
 
 class ClsControllerEstadoProyecto extends Controller
 {
-    public function fncEstadoProyecto($id)
+    public function fncMostrarEstadoProyecto($id)
     {
         $xGstringProyectosAsignado = $id;
 

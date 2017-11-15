@@ -27,6 +27,7 @@
                         </div>
                     @endif
                         <div class="col-md-6">
+                            <h4 class="text-center"><strong>Actividad a Relacionar <i class="fa fa-arrow-right"></i></strong></h4>
                             <input type="hidden" id="Proyecto" value="{{$xGstringProyectosAsignado}}">
                             <div class="form-group">
                                 <label class="control-label">Fases</label>
@@ -50,8 +51,8 @@
                                 </select>
                             </div>
                         </div>
-
                         <div class="col-md-6">
+                            <h4 class="text-center"><strong><i class="fa fa-exchange"></i> Actividad Relacionada</strong></h4>
                             <div class="form-group">
                                 <label class="control-label">Fases</label>
                                 <select id="Fase_2" class="form-control select2">
